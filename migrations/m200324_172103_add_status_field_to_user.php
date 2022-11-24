@@ -15,6 +15,7 @@ class m200324_172103_add_status_field_to_user extends Migration
     {
 
         $this->addColumn('user', 'status', $this->integer(2)->defaultValue(User::STATUS_NEW));
+        $this->update('user', ['status' => User::STATUS_ACTIVE], ['id' => 1]);
 
     }
 

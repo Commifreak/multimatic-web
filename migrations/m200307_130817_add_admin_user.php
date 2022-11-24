@@ -1,6 +1,5 @@
 <?php
 
-use app\models\User;
 use yii\db\Migration;
 
 /**
@@ -23,18 +22,14 @@ class m200307_130817_add_admin_user extends Migration
         $fn       = \yii\helpers\BaseConsole::input('Your first name: ');
         $ln       = \yii\helpers\BaseConsole::input('Your last name: ');
 
-        $user             = new User();
-        $user->first_name = $fn;
-        $user->last_name  = $ln;
-        $user->email      = $email;
-        $user->password   = $password;
 
-        if (!$user->validate()) {
-            print_r($user->getErrors());
-            return false;
-        }
-
-        $user->save();
+        $this->insert('user', [
+            'first_name' => $fn,
+            'last_name'  => $ln,
+            'email'      => $email,
+            'password'   => \Yii::$app->security->generatePasswordHash($password),
+            'auth_key'   => \Yii::$app->security->generateRandomString(),
+        ]);
 
     }
 

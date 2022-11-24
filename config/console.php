@@ -13,7 +13,7 @@ $config = [
         '@npm'   => '@vendor/npm-asset',
         '@tests' => '@app/tests',
     ],
-    'components'          => [
+    'components'    => [
         'cache'       => [
             'class' => 'yii\caching\FileCache',
         ],
@@ -66,7 +66,13 @@ $config = [
             // 'cache' => 'cache',
         ],
     ],
-    'params'              => $params,
+    'controllerMap' => [
+        'migrate' => [
+            'class'         => 'yii\console\controllers\MigrateController',
+            'migrationPath' => ['@app/migrations', '@yii/rbac/migrations'],
+        ],
+    ],
+    'params'        => $params,
     /*
     'controllerMap' => [
         'fixture' => [ // Fixture generation command line.
