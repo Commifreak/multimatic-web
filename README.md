@@ -9,3 +9,7 @@ This project supports collecting data of Vaillant system over VR900/920 via Smar
 * `composer install` ;)
 * configure db
 * `yii migrate/up`
+
+# Run the harvester
+
+You need to setup a cronjob that runs every 5 minutes and executes `php yii harvester/cronjob`. Please note that `php` is YOUR correct php binary name (it could differ from my example).
